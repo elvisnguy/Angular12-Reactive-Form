@@ -1,0 +1,64 @@
+<form [formGroup]="formCovid" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <h1>Tra cứu chứng nhận tiêm</h1>
+    <p>Xin hãy nhập biểu mẫu bên dưới để tra cứu.</p>
+    <hr>
+    <label>
+      Họ và tên:
+      {{formCovid.controls.name.errors | json}}
+      <input type="text" formControlName="name" minlength="3" />
+      <div *ngIf="formCovid.controls.name.errors && formCovid.controls.name.touched">
+        <div *ngIf="formCovid.controls.name.errors.required" style="color:#f46a6a">
+          Họ và tên không được để trống
+        </div>
+        <div *ngIf="formCovid.controls.name.errors.minlength" style="color:#f46a6a">
+          Họ và tên phải từ 3 kí tự trở lên
+        </div>
+      </div>
+    </label>
+
+    <label>
+      Ngày sinh:
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div *ngIf="formCovid.controls.date.errors?.required" style="color:#f46a6a">
+        Ngày sinh không được để trống
+      </div>
+    </label>
+    <br />
+    <label>
+      Giới tính:
+      <select type="text" formControlName="gender">
+        <option value="male">Nam</option>
+        <option value="female">Nữ</option>
+      </select>
+      <div *ngIf="formCovid.controls.gender.errors?.required" style="color:#f46a6a">
+        Vui lòng chọn giới tính
+      </div>
+    </label>
+    <label>
+      Số điện thoại:
+      <input type="text" formControlName="phoneNumber" />
+      <div *ngIf="formCovid.controls.phoneNumber.errors?.required" style="color:#f46a6a">
+        Số điện thoại không được để trống
+      </div>
+    </label>
+    <label>
+      Số CMND/CCCD/HC:
+      <input type="text" formControlName="idNumber" />
+      <div *ngIf="formCovid.controls.idNumber.errors?.required" style="color:#f46a6a">
+        CMND không được để trống
+      </div>
+    </label>
+    <div class="clearfix">
+      <button type="submit" [disabled]="formCovid.invalid" class="signupbtn">Submit</button>
+      <div *ngIf="formCovid.invalid" style="color:#f46a6a">
+        Vui lòng nhập đủ thông tin trước khi gửi
+      </div>
+    </div>
+  </div>
+</form>

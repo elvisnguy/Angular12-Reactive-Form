@@ -7,4 +7,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'reactive-form';
+  
+  name: string = "";
+  date: string = "";
+  gender: string = "";
+  phoneNumber: string = "";
+  idNumber: string = "";
+ 
+
+  receiveData(data:any) :void {
+    console.log("Nhận dc",data);
+    this.name = data.name;
+    this.date = data.date;
+    this.gender = data.gender;
+    this.phoneNumber = data.phoneNumber;
+    this.idNumber = data.idNumber;
+  }
 }
